@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+
+        }
+        body{
+            padding: 20px;
+        }
+        .box{
+            width: 600px;
+            height: 400px;
+            margin: 20px auto ;
+            border: 3px solid #333;
+            position: relative;
+            overflow: hidden;
+            /*left: 0;*/
+            /*top: 0;*/
+
+        }
+        .box .top{
+            z-index: 1;
+            width: 4200px;
+            height: 400px;
+            position: absolute;
+        }
+        .box .top img{
+            float: left;
+        }
+        .bottom{
+            height: 10px;
+            /*width: 100px;*/
+            z-index: 2;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            margin-left: -50px;
+        }
+        .bottom span{
+            cursor: pointer;
+            border-radius: 50%;
+            float: left;
+            border: 1px solid #ffffff;
+            margin-right: 10px;
+            height: 10px;
+            width: 10px;
+            background-color: #333;
+        }
+        #button .on{
+            background-color: orangered;
+        }
+        .arrow{
+            text-decoration: none;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 0,0,0.3);
+            position: absolute;
+            font-size: 36px;
+            color: #ffffff;
+            cursor: pointer;
+            z-index: 2;
+            top: 180px;
+            font-weight: bold;
+            line-height: 36px;
+            text-align: center;
+            /*left: 30px;*/
+            display: block;
+        }
+        #prev{
+            left:20px;
+        }
+        #next{
+            right:20px;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var container = document.getElementById('container');
+            var list = document.getElementById('list');
+            var buttons = document.getElementById('button').getElementsByTagName('span');
+            var prev = document.getElementById('prev');
+            var next = document.getElementById('next');
+            var index = 1;
+            var time;
+
+            function animate(offset){
+                var left = parseInt(list.style.left) + offset ;
+
+                if(left > -600){
+                    left = -3000;
+                }
+                if(left < -3000){
+                    left = -600;
+                }
+                list.style.left = left +'px';
+            }
+
+            //buttons 函数
+            function showButton(){
+                if(index > 5){
+                    index = 1
+                }
+                if(index < 1){
+                    index = 5
+                }
+
+                for(var i = 0; i < buttons.length; i++){
+                       buttons[i].className = '';
+                   }
+                   buttons[index - 1].className = 'on';
+               }
+            //点击右键
+            next.onclick = function(){
+                 index++;
+                 animate(-600);
+                 showButton();
+            };
+
+            //点击左键
+            prev.onclick = function(){
+                index--;
+                animate(600);
+                showButton();
+
+            }
+            function autoPlay(){
+                 timer = setTimeout(function(){
+                    next.onclick();
+                     autoPlay();
+                },2000)
+            }
+            function stop(){
+                clearTimeout(timer);
+            }
+
+
+
+
+
+            for(var i = 0; i <buttons.length; i++){
+                buttons[i].onclick = function(){
+                    var myIndex = parseInt(this.getAttribute('index'));
+                    var offset = (myIndex - index) * -600;
+                    animate(offset);
+                    index = myIndex;
+                    showButton();
+
+                }
+            }
+
+            container.onmouseover = stop;
+            container.onmouseout = autoPlay;
+            autoPlay();
+
+        }
+    </script>
+</head>
+<body>
+<div class="box" id="container">
+    <div class="top" id="list" style="left: -600px">
+        <img src="img/5.jpg" alt="1"/>
+        <img src="img/1.jpg" alt="1"/>
+        <img src="img/2.jpg" alt="1"/>
+        <img src="img/3.jpg" alt="1"/>
+        <img src="img/4.jpg" alt="1"/>
+        <img src="img/5.jpg" alt="1"/>
+        <img src="img/1.jpg" alt="1"/>
+    </div>
+    <div class="bottom" id="button">
+         <span class="on" index="1"></span>
+         <span index="2"></span>
+         <span index="3"></span>
+         <span index="4"></span>
+         <span index="5"></span>
+    </div>
+
+    <a href="javascript:;" id="prev" class="arrow">&lt;</a>
+    <a href="javascript:;" id="next" class="arrow">&gt;</a>
+</div>
+<a href="返回上一层.html">跳转</a>
+</body>
+</html>

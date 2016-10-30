@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="angular-1.5.8/angular.js"></script>
+</head>
+<body>
+<div ng-app="">
+   <!--姓名: <input type="text" ng-model="vau"/>-->
+    <!--<span ng-hide="vau">-->
+        <!--输入不能为空-->
+    <!--</span>-->
+    <form action="" name="formName">
+    <div>
+        姓名: <input type="text" name="name" ng-model="mName" ng-minlength="2" ng-maxlength="4" ng-pattern="/\^d/" required/>
+        <span ng-show="formName.name.$error.required">请输入姓名</span>
+        <span ng-show="formName.name.$error.minlength">姓名长度不能小于2</span>
+        <span ng-show="formName.name.$error.maxlength">姓名长度不能大于4</span>
+        <span ng-show="formName.name.$error.pattern">姓名不能以数字开头</span>
+
+
+    </div>
+        <div> </div>
+
+    </form>
+</div>
+</body>
+</html>

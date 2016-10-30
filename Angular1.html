@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="angular-1.5.8/angular.js"></script>
+</head>
+<body>
+<div ng-app="">
+
+<input type="number" ng-model="hell"/>
+    <span>+</span>
+    <input type="number" ng-model="hehe"/>
+    <input type="button"  ng-click=" hh = hell+ hehe" value="="/>
+<input type="text" id="btn_add"  ng-model="hh" value=""/>
+
+</div>
+<script>
+//    (function(window, documen){
+//        var txt = document.querySelector("#text_value");
+//        var btn = document.querySelector("#btn_add");
+//        //addEventListener与onclick区别 onclick是给添加一个事件,解绑的话要重新定义
+//        //addEventListener可以直接给同一个对象添加多个事件绑定
+//        btn.addEventListener("click", function(e){
+//            var now = txt.value - 0;
+//            now = now + 1;
+//            txt.value = now;
+//        });
+
+//    })(window, document);
+
+
+
+
+//    (function(wind, docu){
+//        var txt = document.getElementById('text_value');
+//        var btn = document.getElementById("btn_add");
+//        btn.onclick = function() {
+//            var now = txt.value - 0;
+//            now = now + 1;
+//            txt.value = now;
+//        }
+//    })(window, document);
+
+
+</script>
+</body>
+</html>

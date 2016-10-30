@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        img{
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+
+    <script>
+        window.onload = function(){
+            var gall = document.getElementById('gallery');
+            var links = gall.getElementsByTagName('a');
+            var place = document.getElementById('placeholder');
+            var desc = document.getElementById('desc');
+            for(var i = 0; i< links.length; i++){
+
+                links[i].onclick = function(){
+                    place.src = this.href;
+                    desc.innerHTML = this.title;
+                    return false;//这个是用来禁止a标签跳转的
+                }
+            }
+        }
+
+    </script>
+
+</head>
+<body>
+<h1>图片展示</h1>
+<ul id="gallery">
+    <li><a href="images/1.jpg" title="可爱">第一张图片</a></li>
+    <li><a href="images/2.jpg" title="好看">第二张图片</a></li>
+    <li><a href="images/3.jpg" title="漂亮">第三张图片</a></li>
+    <li><a href="images/4.jpg" title="美丽">第四张图片</a></li>
+    <li><a href="images/5.png" title="养眼">第五张图片</a></li>
+</ul>
+<img src="images/1.jpg" alt="" id="placeholder"/>
+<p id="desc">图片的描述</p>
+</body>
+</html>
